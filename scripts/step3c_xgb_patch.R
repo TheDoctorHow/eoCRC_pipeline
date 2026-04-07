@@ -4,8 +4,16 @@
 suppressPackageStartupMessages({
   library(xgboost); library(pROC); library(compositions); library(meta); library(dplyr)
 })
-setwd("/home/yugiu/eoCRC_analysis")
+if (basename(getwd()) == "scripts") setwd("..")
 set.seed(42)
+
+if (!file.exists("all_samples_metadata.rds") ||
+    !file.exists("species_filtered.rds")      ||
+    !file.exists("path_filtered.rds"))
+  stop("Run scripts/step1_extract_filter.R first to generate input data.")
+if (!file.exists("loso_primary_folds.rds") ||
+    !file.exists("loso_secondary_folds.rds"))
+  stop("Run scripts/step3_loso_cv.R first to generate LOSO fold results.")
 
 N_TOP      <- 50
 XGB_ROUNDS <- 100

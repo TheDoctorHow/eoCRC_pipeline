@@ -5,8 +5,11 @@ suppressPackageStartupMessages({
   library(ggplot2); library(dplyr); library(tidyr)
 })
 
-setwd("/home/yugiu/eoCRC_analysis")
+if (basename(getwd()) == "scripts") setwd("..")
 dir.create("figures", showWarnings = FALSE)
+
+if (!file.exists("all_samples_metadata.rds"))
+  stop("Run scripts/step1_extract_filter.R first to generate input data.")
 
 COL <- list(
   eoCRC      = "#E74C3C", young_ctrl = "#27AE60",

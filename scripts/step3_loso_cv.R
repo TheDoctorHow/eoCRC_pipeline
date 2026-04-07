@@ -20,8 +20,13 @@ suppressPackageStartupMessages({
   library(parallel)
 })
 
-setwd("/home/yugiu/eoCRC_analysis")
+if (basename(getwd()) == "scripts") setwd("..")
 set.seed(42)
+
+if (!file.exists("all_samples_metadata.rds") ||
+    !file.exists("species_filtered.rds")      ||
+    !file.exists("path_filtered.rds"))
+  stop("Run scripts/step1_extract_filter.R first to generate input data.")
 
 # ── Parameters ────────────────────────────────────────────────────────────────
 N_TOP      <- 50       # features after variance selection

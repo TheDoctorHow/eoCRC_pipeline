@@ -19,7 +19,12 @@ suppressPackageStartupMessages({
   library(dplyr)
 })
 
-setwd("/home/yugiu/eoCRC_analysis")
+if (basename(getwd()) == "scripts") setwd("..")
+
+if (!file.exists("all_samples_metadata.rds") ||
+    !file.exists("species_filtered.rds")      ||
+    !file.exists("path_filtered.rds"))
+  stop("Run scripts/step1_extract_filter.R first to generate input data.")
 
 PSEUDO <- 1e-6
 BASE   <- "maaslin2_results_v3"

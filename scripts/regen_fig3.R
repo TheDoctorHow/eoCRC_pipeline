@@ -8,8 +8,11 @@ suppressPackageStartupMessages({
   library(dplyr)
 })
 
-setwd("/home/yugiu/eoCRC_analysis")
+if (basename(getwd()) == "scripts") setwd("..")
 dir.create("figures", showWarnings = FALSE)
+
+if (!file.exists("maaslin2_results_v3/summaries/all_associations.csv"))
+  stop("Run scripts/step2c_maaslin2_v3.R first to generate MaAsLin2 v3 results.")
 
 # ── Load v3 results ────────────────────────────────────────────────────────────
 maas_v3 <- read.csv("maaslin2_results_v3/summaries/all_associations.csv",

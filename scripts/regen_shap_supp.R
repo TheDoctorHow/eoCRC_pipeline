@@ -9,8 +9,13 @@ suppressPackageStartupMessages({
   library(patchwork); library(ggrepel)
 })
 
-setwd("/home/yugiu/eoCRC_analysis")
+if (basename(getwd()) == "scripts") setwd("..")
 dir.create("figures", showWarnings = FALSE)
+
+if (!file.exists("shap_extended_results.rds"))
+  stop("Run scripts/step4_shap.R first to generate SHAP results.")
+if (!file.exists("loso_primary_folds.rds"))
+  stop("Run scripts/step3_loso_cv.R first to generate LOSO fold results.")
 
 # ── Palette ────────────────────────────────────────────────────────────────────
 COL_UP  <- "#C0392B"   # enriched in eoCRC (red)

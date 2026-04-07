@@ -15,9 +15,14 @@ suppressPackageStartupMessages({
   library(patchwork)
 })
 
-setwd("/home/yugiu/eoCRC_analysis")
+if (basename(getwd()) == "scripts") setwd("..")
 set.seed(42)
 dir.create("figures", showWarnings = FALSE)
+
+if (!file.exists("all_samples_metadata.rds") ||
+    !file.exists("species_filtered.rds")      ||
+    !file.exists("path_filtered.rds"))
+  stop("Run scripts/step1_extract_filter.R first to generate input data.")
 
 N_TOP    <- 50
 N_SHAP   <- 20   # top features to show in plots

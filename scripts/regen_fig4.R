@@ -5,8 +5,11 @@ suppressPackageStartupMessages({
   library(ggplot2); library(dplyr); library(tidyr)
 })
 
-setwd("/home/yugiu/eoCRC_analysis")
+if (basename(getwd()) == "scripts") setwd("..")
 dir.create("figures", showWarnings = FALSE)
+
+if (!file.exists("shap_extended_results.rds"))
+  stop("Run scripts/step4_shap.R first to generate SHAP results.")
 
 # ── Palette & helpers (match step5_figures.R) ──────────────────────────────────
 COL <- list(sig_up = "#C0392B", sig_dn = "#1A5276")

@@ -8,8 +8,19 @@ suppressPackageStartupMessages({
   library(compositions); library(RColorBrewer); library(grid)
 })
 
-setwd("/home/yugiu/eoCRC_analysis")
+if (basename(getwd()) == "scripts") setwd("..")
 dir.create("figures", showWarnings = FALSE)
+
+if (!file.exists("all_samples_metadata.rds") ||
+    !file.exists("species_filtered.rds")      ||
+    !file.exists("path_filtered.rds"))
+  stop("Run scripts/step1_extract_filter.R first to generate input data.")
+if (!file.exists("loso_primary_folds.rds")        ||
+    !file.exists("loso_pooled_auroc_summary.rds")  ||
+    !file.exists("loso_primary_permutations.rds"))
+  stop("Run scripts/step3_loso_cv.R first to generate LOSO results.")
+if (!file.exists("shap_extended_results.rds"))
+  stop("Run scripts/step4_shap.R first to generate SHAP results.")
 
 # ── Palette & theme ────────────────────────────────────────────────────────────
 COL <- list(
@@ -850,7 +861,7 @@ md_lines <- c(
   "---",
   "",
   "*Analysis pipeline: curatedMetagenomicData v3 -> MaAsLin2 -> LOSO-CV (RF/XGBoost/ElasticNet) -> SHAP (fastshap)*",
-  paste0("*All code: /home/yugiu/eoCRC_analysis/ | R ", R.version$major, ".", R.version$minor, "*")
+  paste0("*All code: https://github.com/TheDoctorHow/eoCRC_pipeline | R ", R.version$major, ".", R.version$minor, "*")
 )
 
 writeLines(md_lines, "summary.md")

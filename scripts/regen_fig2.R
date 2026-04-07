@@ -6,7 +6,7 @@ suppressPackageStartupMessages({
   library(dplyr)
 })
 
-setwd("/home/yugiu/eoCRC_analysis")
+if (basename(getwd()) == "scripts") setwd("..")
 dir.create("figures", showWarnings = FALSE)
 
 # ── Fold data (species RF, eoCRC vs young controls; hardcoded from analysis) ──

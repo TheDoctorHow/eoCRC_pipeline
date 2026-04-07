@@ -1,7 +1,15 @@
 suppressPackageStartupMessages({
   library(dplyr)
 })
-setwd("/home/yugiu/eoCRC_analysis")
+if (basename(getwd()) == "scripts") setwd("..")
+
+if (!file.exists("all_samples_metadata.rds") ||
+    !file.exists("loso_pooled_auroc_summary.rds"))
+  stop("Run step1 and step3 scripts first to generate required data.")
+if (!file.exists("maaslin2_results_v2/summaries/all_associations.csv"))
+  stop("Run scripts/step2b_maaslin2_corrected.R first to generate MaAsLin2 v2 results.")
+if (!file.exists("shap_top20_extended.csv"))
+  stop("Run scripts/step4_shap.R first to generate SHAP results.")
 
 meta     <- readRDS("all_samples_metadata.rds") %>%
   mutate(grp = case_when(
