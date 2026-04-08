@@ -55,9 +55,54 @@ if (basename(getwd()) == "scripts") setwd("..")
 
 ### Step 1 — Data download and prevalence filtering
 
+Terminal:
 ```bash
 Rscript scripts/step1_extract_filter.R
 ```
+
+If you wish to run this step on Rstudio, please follow the instructions below:
+
+1. Download the code as a ZIP folder
+2. Extract the ZIP to folder of your choice (like your downloads)
+3. Run the code below in RStudio-
+
+```R
+ ### ---- 1. Fix library path (permissions) ----
+  dir.create(file.path(Sys.getenv("USERPROFILE"), "Documents/R/win-library/4.5"),
+             recursive = TRUE, showWarnings = FALSE)
+  .libPaths(file.path(Sys.getenv("USERPROFILE"), "Documents/R/win-library/4.5"))
+
+
+  ### ---- 2. Install required packages (only if missing) ----
+  if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+  BiocManager::install(c(
+    "curatedMetagenomicData",
+    "TreeSummarizedExperiment",
+    "SummarizedExperiment",
+    "Maaslin2"
+  ), ask = FALSE)
+
+  install.packages(c(
+    "compositions", "randomForest", "xgboost", "glmnet",
+    "pROC", "meta", "fastshap", "shapviz", "ggplot2", "ggrepel",
+    "pheatmap", "patchwork", "dplyr", "tidyr", "RColorBrewer"
+  ))
+
+
+  ### ---- 3. Set working directory (project root) ----
+  setwd(rstudioapi::selectDirectory(caption = "Select the eoCRC_pipeline folder"))
+
+  cat("Working directory:\n")
+  print(getwd())
+  print(list.files())
+
+
+  ### ---- 4. Run pipeline ----
+  source("scripts/step1_extract_filter.R")
+```
+
 
 **What it does:** Downloads relative abundance and pathway abundance profiles for 9 CRC cohorts from curatedMetagenomicData v3 (Bioconductor), applies a ≥10% prevalence filter, and saves filtered matrices.
 
