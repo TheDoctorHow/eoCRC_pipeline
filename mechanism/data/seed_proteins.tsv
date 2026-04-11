@@ -1,0 +1,57 @@
+organism	protein	uniprot_id	role	source_pmid
+Homo sapiens	ERBB2	P04626	host_oncogenic_receptor	NA
+Homo sapiens	KRAS	P01116	MAPK_cascade_node	NA
+Homo sapiens	MAP2K1	Q02750	MAPK_cascade_node	NA
+Homo sapiens	MAPK3	P27361	MAPK_cascade_node	NA
+Homo sapiens	MAPK1	P28482	MAPK_cascade_node	NA
+Homo sapiens	RELA	Q04206	NF-kB_axis_node	NA
+Homo sapiens	NFKB1	P19838	NF-kB_axis_node	NA
+Homo sapiens	IKBKB	O14920	NF-kB_axis_node	NA
+Homo sapiens	CEBPB	P17676	inflammation_TF	NA
+Homo sapiens	SAA1	NA	acute_phase_protein	NA
+Homo sapiens	IL17C	NA	proinflammatory_cytokine	NA
+Homo sapiens	CXCL8	P10145	chemokine	NA
+Homo sapiens	CXCR1	P25024	chemokine_receptor	NA
+Homo sapiens	CXCR2	P25025	chemokine_receptor	NA
+Homo sapiens	DNMT1	P26358	epigenetic_methyltransferase	NA
+Homo sapiens	DNMT3A	Q9Y6K1	epigenetic_methyltransferase	NA
+Homo sapiens	DNMT3B	Q9UBC3	epigenetic_methyltransferase	NA
+Homo sapiens	APC	P25054	tumor_suppressor	NA
+Homo sapiens	MLH1	P40692	DNA_mismatch_repair	NA
+Homo sapiens	CDKN2A	P42771	cell_cycle_inhibitor	NA
+Homo sapiens	H2BC4	NA	histone_H2B_variant	NA
+Parvimonas micra	SirTM	NA	bacterial_sirtuin_effector	NA
+Parvimonas stomatis	LPS_biosynthesis_enzyme	NA	bacterial_LPS_structural_placeholder	NA
+Parvimonas stomatis	adhesin	NA	bacterial_adhesin_placeholder	NA
+Gemella morbillorum	LPS_biosynthesis_enzyme	NA	bacterial_LPS_structural_placeholder	NA
+Gemella morbillorum	adhesin	NA	bacterial_adhesin_placeholder	NA
+Dialister pneumosintes	LPS_biosynthesis_enzyme	NA	bacterial_LPS_structural_placeholder	NA
+Dialister pneumosintes	adhesin	NA	bacterial_adhesin_placeholder	NA
+# --- UNCERTAIN / FLAGGED ENTRIES ---
+# SAA1 (Homo sapiens): UniProt left as NA. Candidate accessions are P0DJI8 and P02763
+#   (both annotated as SAA1_HUMAN in different UniProt releases); verify current
+#   canonical entry before querying.
+#
+# IL17C (Homo sapiens): Candidate UniProt Q9P0M4 (IL17C_HUMAN) — not verified against
+#   live UniProt; leave as NA until confirmed.
+#
+# H2BC4 (Homo sapiens): H2B variants have complex, frequently revised nomenclature.
+#   Candidate accession P62807 (H2BC4_HUMAN / H2B type 1-J), but the user-specified
+#   "H2B variants" may refer to multiple paralogs (H2BC4, H2BC5, H2BC11, etc.).
+#   Expand to full variant list and verify accessions before PPI queries.
+#
+# SirTM (Parvimonas micra): Protein class (bacterial sirtuin / SirTM) is documented in
+#   anaerobic bacteria but a P. micra-specific UniProt entry has not been verified.
+#   Search UniProt with taxon "Parvimonas micra" + keyword "sirtuin" to find the
+#   correct accession. Source PMID also left as NA — candidate literature includes
+#   Rack et al. on bacterial sirtuins, but PMID not confirmed.
+#
+# Bacterial LPS/adhesin placeholders (P. stomatis, G. morbillorum, D. pneumosintes):
+#   All three entries are scaffolds only. Specific gene products (e.g. FadA-like
+#   adhesins, Lpx-family LPS enzymes) must be identified via genome annotation
+#   (NCBI RefSeq) and literature before UniProt IDs or PMIDs can be filled in.
+#
+# All source_pmid fields set to NA: a systematic PubMed search linking each host
+#   protein to eoCRC/CRC and to the four bacterial species is required. Starting
+#   points: Flemer et al. 2018 (P. micra CRC association), Drewes et al. 2022
+#   (eoCRC microbiome), and per-gene CRC literature.
