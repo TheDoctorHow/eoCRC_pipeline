@@ -1,0 +1,7 @@
+# STRING edges for Peptostreptococcus stomatis (taxid 341694) — FBA (E0E2E9)
+# Run date: 2026-04-13
+# Result: EMPTY — taxid 341694 is absent from STRING v11.5.
+# The STRING alias file (protein.aliases.v11.5/341694.protein.aliases.v11.5.txt.gz)
+# returns HTTP 404, confirming this organism is not indexed in STRING v11.5.
+# FBA connectivity is represented solely via bridge_edges.tsv (literature-curated).
+from	to	combined_score

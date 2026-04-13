@@ -1,0 +1,5 @@
+# STRING nodes for Peptostreptococcus stomatis (taxid 341694) — FBA (E0E2E9)
+# Run date: 2026-04-13
+# Result: EMPTY — taxid 341694 is absent from STRING v11.5.
+# See string_edges_p_stomatis.tsv header for full explanation.
+STRING_id	node_type	protein
