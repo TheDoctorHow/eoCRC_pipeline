@@ -47,20 +47,20 @@ MAX_SHELL_NODES      <- 10L   # max new (non-seed) nodes added per organism
 
 # NCBI taxonomy IDs for each organism in the seed list
 TAX_IDS <- c(
-  "Homo sapiens"           = 9606L,
-  "Parvimonas micra"       = 33033L,
-  "Parvimonas stomatis"    = 341694L,
-  "Gemella morbillorum"    = 29390L,
-  "Dialister pneumosintes" = 39950L
+  "Homo sapiens"               = 9606L,
+  "Parvimonas micra"           = 33033L,
+  "Peptostreptococcus stomatis" = 341694L,
+  "Gemella morbillorum"        = 29390L,
+  "Dialister pneumosintes"     = 39950L
 )
 
 # Output filename slug (human gets the literal label "human"; bacteria get genus_species)
 FILE_SLUG <- c(
-  "Homo sapiens"           = "human",
-  "Parvimonas micra"       = "parvimonas_micra",
-  "Parvimonas stomatis"    = "parvimonas_stomatis",
-  "Gemella morbillorum"    = "gemella_morbillorum",
-  "Dialister pneumosintes" = "dialister_pneumosintes"
+  "Homo sapiens"               = "human",
+  "Parvimonas micra"           = "parvimonas_micra",
+  "Peptostreptococcus stomatis" = "peptostreptococcus_stomatis",
+  "Gemella morbillorum"        = "gemella_morbillorum",
+  "Dialister pneumosintes"     = "dialister_pneumosintes"
 )
 
 # ---------------------------------------------------------------------------
@@ -76,6 +76,18 @@ seeds_raw <- read.table(
 )
 
 seeds <- seeds_raw[seeds_raw$organism %in% names(TAX_IDS), ]
+
+# Warn about any seed rows whose organism name is not in TAX_IDS — these would
+# otherwise be silently dropped (as happened with Peptostreptococcus stomatis
+# when the key was incorrectly listed as Parvimonas stomatis).
+dropped_rows <- seeds_raw[!seeds_raw$organism %in% names(TAX_IDS), ]
+if (nrow(dropped_rows) > 0L) {
+  warning(sprintf(
+    "The following seed rows have organism names not found in TAX_IDS and will be SKIPPED:\n  %s\n  Check for organism name mismatches between seed_proteins.tsv and TAX_IDS.",
+    paste(sprintf("'%s' (%s)", dropped_rows$protein, dropped_rows$organism), collapse = "\n  ")
+  ))
+}
+
 cat(sprintf("Loaded %d seed entries across %d organisms.\n\n",
             nrow(seeds), length(unique(seeds$organism))))
 
