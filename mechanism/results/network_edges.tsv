@@ -91,6 +91,9 @@ IRAK2	IKBKB	STRING_PPI	922	NA	NA
 TLR4	IKBKB	STRING_PPI	971	NA	NA
 RELA	IKBKB	STRING_PPI	998	NA	NA
 MYD88	IKBKB	STRING_PPI	982	NA	NA
-SirTM	H2BC4	literature_curated	NA	41850426	ADP-ribosylation
-FBA	ITGA6	literature_curated	NA	39059397	surface_protein_binding
-FBA	ITGB4	literature_curated	NA	39059397	surface_protein_binding
+SirTM	H2BC4	literature_curated_binding	NA	41850426	ADP-ribosylation
+FBA	ITGA6	literature_curated_binding	NA	39059397	surface_protein_binding
+FBA	ITGB4	literature_curated_binding	NA	39059397	surface_protein_binding
+H2BC4	CEBPB	literature_curated_functional	NA	41850426	chromatin_regulation_transcription
+CEBPB	SAA1	literature_curated_functional	NA	41850426	transcription_factor_target_activation
+SAA1	IL17C	literature_curated_functional	NA	41850426	autocrine_signaling_induction

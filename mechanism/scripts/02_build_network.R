@@ -282,17 +282,22 @@ pstom_edges <- if (nrow(str_edges_ps) > 0L) {
 }
 
 # ---- 5d. Literature-curated bridge edges ---------------------------------
+# edge_type is read directly from bridge_edges.tsv (literature_curated_binding
+# or literature_curated_functional); do not hard-code it here.
 bridge_edges <- bridge %>%
   transmute(
     source        = source_protein,
     target        = target_protein,
-    edge_type     = "literature_curated",
+    edge_type     = edge_type,
     weight        = NA_real_,
     pmid          = as.character(source_pmid),
     evidence_type = evidence_type
   )
 
-cat(sprintf("Bridge edges: %d\n", nrow(bridge_edges)))
+cat(sprintf("Bridge edges: %d (%d binding, %d functional)\n",
+            nrow(bridge_edges),
+            sum(bridge_edges$edge_type == "literature_curated_binding"),
+            sum(bridge_edges$edge_type == "literature_curated_functional")))
 
 # ---- 5e. Combine all edges -----------------------------------------------
 edge_tbl <- bind_rows(str_edges_h_dedup, pstom_edges, bridge_edges)
@@ -353,8 +358,9 @@ cat(sprintf("  seed_human        : %d\n", sum(node_tbl$node_type == "seed_human"
 cat(sprintf("  shell_human       : %d\n", sum(node_tbl$node_type == "shell_human")))
 cat(sprintf("  bacterial_effector: %d\n", sum(node_tbl$node_type == "bacterial_effector")))
 cat(sprintf("Total edges : %d\n", nrow(edge_tbl)))
-cat(sprintf("  STRING_PPI         : %d\n", sum(edge_tbl$edge_type == "STRING_PPI")))
-cat(sprintf("  literature_curated : %d\n", sum(edge_tbl$edge_type == "literature_curated")))
+cat(sprintf("  STRING_PPI                   : %d\n", sum(edge_tbl$edge_type == "STRING_PPI")))
+cat(sprintf("  literature_curated_binding   : %d\n", sum(edge_tbl$edge_type == "literature_curated_binding")))
+cat(sprintf("  literature_curated_functional: %d\n", sum(edge_tbl$edge_type == "literature_curated_functional")))
 if (length(isolated) > 0L) {
   cat(sprintf("Isolated nodes: %s\n", paste(isolated, collapse = ", ")))
 } else {
