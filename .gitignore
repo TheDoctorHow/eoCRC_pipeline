@@ -34,3 +34,12 @@ results/networks/*.csv
 
 # STRING per-taxid cache directories (large downloads, reproducible)
 mechanism/results/string_cache_*/
+
+# Raw genome/proteome downloads (large, reproducible from NCBI)
+mechanism/data/refseq/
+Rplots.pdf
+eoCRC_Proposal_v4.docx
+eocrc_samples_cmd.tsv
+*.cys
+micom_analysis/
+mechanism/scripts/find_sirtm_*
