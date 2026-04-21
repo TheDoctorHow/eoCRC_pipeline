@@ -234,6 +234,32 @@ Rscript scripts/regen_shap_supp.R  # SHAP supplementary figures (requires step4 
 
 ---
 
+## Step 6: Network Analysis
+
+Requires: SpiecEasi, igraph, pROC, vegan, ppcor
+
+Install dependencies:
+```r
+devtools::install_github("zdk123/SpiecEasi")
+install.packages(c("igraph", "pROC", "vegan", "ppcor"))
+```
+
+Run: `scripts/step6_network_analysis.R`  
+Runtime: ~30-40 minutes  
+Outputs: `results/networks/` (SpiecEasi models, igraph objects, diffusion results, module scores, community detection stability, network summary)
+
+---
+
+## Step 7: Network Robustness Checks
+
+Requires: step6 outputs
+
+Run: `scripts/step7_network_robustness.R`  
+Runtime: ~3-4 hours (100-iteration matched comparison is the bottleneck)  
+Outputs: `results/networks/` (leave-one-study-out results, algorithm sensitivity, matched comparison, compositional homogeneity, homogeneity-matched topology test)
+
+---
+
 ## Recommended run order
 
 ```

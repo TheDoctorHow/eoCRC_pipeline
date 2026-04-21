@@ -37,6 +37,24 @@ This pipeline integrates nine international public cohorts accessed through the 
 
 ---
 
+## Network Analysis (Steps 6-7)
+
+We applied network-based ecological analysis to characterize the community-level organization of CRC-associated dysbiosis beyond individual species abundances.
+
+**Step 6** builds SpiecEasi co-occurrence networks for all four groups (eoCRC, young controls, loCRC, older controls), performs network diffusion analysis to measure directional ecological influence flow from oral pathobionts, runs community detection, computes dual-module scores, and tests within-study reproducibility.
+
+**Step 7** performs comprehensive robustness checks: leave-one-study-out diffusion, community detection algorithm sensitivity (Louvain, walktrap, infomap, label propagation), species definition sensitivity, restart probability sensitivity, 100-iteration sample-size-matched loCRC comparison, compositional homogeneity testing, and homogeneity-matched topology analysis.
+
+### Key findings:
+- CRC dysbiosis is organized around two anticorrelated ecological modules (oral-CRC pathobionts vs butyrate producers, rho = -0.27 to -0.38 in all groups)
+- Network diffusion reveals oral pathobionts in eoCRC propagate influence toward CRC-driver species (ratio 40:1, permutation p < 0.001) vs oral commensals in controls (ratio 2-3:1)
+- eoCRC network topology is significantly more consistent than sample-size-matched loCRC (Wilcoxon p = 0.001, Cohen's d = 0.46)
+- Gemella-P. stomatis co-occurrence replicates in 5/5 independent cohorts
+
+See `eoCRC_Network_Analysis_Report.md` for full technical details and honest assessment of limitations.
+
+---
+
 ## Repository Structure
 
 ```

@@ -141,4 +141,29 @@ Doubly validated: 13/20 features (10 enriched in eoCRC, 3 depleted: F. prausnitz
 
 \---
 
+## 8. Network Analysis Findings
+
+### Dual-Module Architecture
+- CRC organized around two anticorrelated modules: oral-CRC pathobionts vs butyrate producers
+- Anticorrelation consistent across all groups (rho = -0.27 to -0.38, all significant)
+- Zero direct network edges between modules; zero shared communities
+- Dual-module ratio AUC = 0.673 for CRC classification (outperforms any single species)
+
+### Network Diffusion
+- eoCRC CRC:BP diffusion ratio = 40.4 (permutation p < 0.001)
+- Young controls = 2.9 (p = 0.31), loCRC = 2.3
+- Robust across 9 leave-one-study-out iterations (range 8.8-25.7)
+- eoCRC vs matched loCRC: Wilcoxon p = 0.001, Cohen's d = 0.46
+
+### Reproducibility
+- Gemella↔P. stomatis: positive in 5/5 studies
+- P. micra↔F. nucleatum: positive in all testable studies
+- All key correlations survive partial correlation controlling for study batch
+
+### Limitations
+- eoCRC is compositionally more homogeneous than loCRC (betadisper p = 0.039), which may partly explain more stable network topology
+- Per-sample module scores do not distinguish eoCRC from loCRC (all p > 0.4)
+- The topological distinction exists at the group-level network but does not translate into per-sample differences
+
+\---
 
